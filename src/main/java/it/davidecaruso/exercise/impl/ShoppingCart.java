@@ -10,6 +10,7 @@ import java.util.Locale;
 
 import it.davidecaruso.exercise.interfaces.ICartItem;
 import it.davidecaruso.exercise.interfaces.IGood;
+import it.davidecaruso.exercise.interfaces.ISalesTax;
 import it.davidecaruso.exercise.interfaces.IShoppingCart;
 import it.davidecaruso.exercise.utils.BigIntegerUtils;
 
@@ -50,13 +51,13 @@ public class ShoppingCart implements IShoppingCart{
 	}
 
 	
-	public void addItem(IGood good,BigDecimal quantity) {
-		ICartItem cartItem = new CartItem(good, quantity);
+	public void addItem(IGood good,BigDecimal quantity,ISalesTax salesTax) {
+		ICartItem cartItem = new CartItem(good, quantity,salesTax);
 		cartItems.add(cartItem);
 	}
 
-	public void addItem(IGood good) {
-		addItem(good,new BigDecimal("1"));
+	public void addItem(IGood good,ISalesTax salesTax) {
+		addItem(good,new BigDecimal("1"),salesTax);
 	}
 
 

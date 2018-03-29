@@ -4,8 +4,10 @@ import java.math.BigDecimal;
 
 import it.davidecaruso.exercise.impl.Good;
 import it.davidecaruso.exercise.impl.ImportedGood;
+import it.davidecaruso.exercise.impl.SalesTax;
 import it.davidecaruso.exercise.impl.ShoppingCart;
 import it.davidecaruso.exercise.interfaces.IGood;
+import it.davidecaruso.exercise.interfaces.ISalesTax;
 import it.davidecaruso.exercise.interfaces.IShoppingCart;
 
 
@@ -15,7 +17,7 @@ public class App {
 	
 	public static void main(String[] args) {
 	
-
+		ISalesTax salesTax = new SalesTax();
 
 		IGood book = new Good("book", new BigDecimal(12.49), true);
 		IGood musicCD = new Good("Music CD", new BigDecimal(14.99), false);
@@ -23,9 +25,9 @@ public class App {
 
 		IShoppingCart cart = new ShoppingCart();
 		cart.initCart("Output 1");
-		cart.addItem(book);
-		cart.addItem(musicCD);
-		cart.addItem(chocolateBar);
+		cart.addItem(book,salesTax);
+		cart.addItem(musicCD,salesTax);
+		cart.addItem(chocolateBar,salesTax);
 
 		cart.printReceipt();
 		
@@ -35,8 +37,8 @@ public class App {
 
 		cart = new ShoppingCart();
 		cart.initCart("Output 2");
-		cart.addItem(boxOfChocolates);
-		cart.addItem(bottleOfPerfume);
+		cart.addItem(boxOfChocolates,salesTax);
+		cart.addItem(bottleOfPerfume,salesTax);
 
 		cart.printReceipt();
 		
@@ -48,10 +50,10 @@ public class App {
 
 		cart = new ShoppingCart();
 		cart.initCart("Output 3");
-		cart.addItem(importedPerfume);
-		cart.addItem(perfume);
-		cart.addItem(headeachePills);
-		cart.addItem(boxOfImportedChocolates);
+		cart.addItem(importedPerfume,salesTax);
+		cart.addItem(perfume,salesTax);
+		cart.addItem(headeachePills,salesTax);
+		cart.addItem(boxOfImportedChocolates,salesTax);
 		
 		cart.printReceipt();
 

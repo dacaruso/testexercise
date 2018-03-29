@@ -5,8 +5,10 @@ import java.math.RoundingMode;
 
 import it.davidecaruso.exercise.impl.Good;
 import it.davidecaruso.exercise.impl.ImportedGood;
+import it.davidecaruso.exercise.impl.SalesTax;
 import it.davidecaruso.exercise.impl.ShoppingCart;
 import it.davidecaruso.exercise.interfaces.IGood;
+import it.davidecaruso.exercise.interfaces.ISalesTax;
 import it.davidecaruso.exercise.interfaces.IShoppingCart;
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -24,12 +26,15 @@ public class AppTest
 	  private IGood taxedLocal;
 	  private IGood taxedImported;
 	  
+	  private ISalesTax salesTax;
+	  
 
 	  private void setUpProducts() {
 		    exemptLocal = new Good("book", new BigDecimal(12.49), true);
 		    exemptImported = new ImportedGood("box Of Chocolates", new BigDecimal(10.00), true);
 		    taxedLocal = new Good("Music CD", new BigDecimal(14.99), false);
 		    taxedImported = new ImportedGood("bottle Of Perfume", new BigDecimal(47.50), false);
+		    salesTax = new SalesTax();
 	}	  
     /**
      * Create the test case
@@ -66,7 +71,7 @@ public class AppTest
     
     public void purchase_Exempt_Local_Product() {
     	IShoppingCart cart = new ShoppingCart("Purchase_Exempt_Local_Product");
-		cart.addItem(exemptLocal);
+		cart.addItem(exemptLocal,salesTax);
 		cart.checkout();
 		assertEquals(new BigDecimal(12.49).setScale(2, RoundingMode.HALF_UP), cart.getTotalPrice().setScale(2, RoundingMode.HALF_UP));
 		assertEquals(new BigDecimal(0.0).setScale(2, RoundingMode.HALF_UP), cart.getTotalTaxes().setScale(2, RoundingMode.HALF_UP));		
@@ -76,7 +81,7 @@ public class AppTest
     public void purchase_Exempt_Imported_Product() {
     	
     	IShoppingCart cart = new ShoppingCart("Purchase_Exempt_Imported_Product");
-		cart.addItem(exemptImported);
+		cart.addItem(exemptImported,salesTax);
 		cart.checkout();
 		assertEquals(new BigDecimal(10.00).setScale(2, RoundingMode.HALF_UP), cart.getTotalPrice().setScale(2, RoundingMode.HALF_UP));
 		assertEquals(new BigDecimal(0.50).setScale(2, RoundingMode.HALF_UP), cart.getTotalTaxes().setScale(2, RoundingMode.HALF_UP));		
@@ -85,7 +90,7 @@ public class AppTest
     
     public void purchase_Taxed_Local_Product() {
     	IShoppingCart cart = new ShoppingCart("Purchase_Taxed_Local_Product");
-		cart.addItem(taxedLocal);
+		cart.addItem(taxedLocal,salesTax);
 		cart.checkout();
 		assertEquals(new BigDecimal(14.99).setScale(2, RoundingMode.HALF_UP), cart.getTotalPrice().setScale(2, RoundingMode.HALF_UP));
 		assertEquals(new BigDecimal(1.5).setScale(2, RoundingMode.HALF_UP), cart.getTotalTaxes().setScale(2, RoundingMode.HALF_UP));		
@@ -94,7 +99,7 @@ public class AppTest
     
     public void purchase_Taxed_Imported_Product() {
     	IShoppingCart cart = new ShoppingCart("Purchase_Taxed_Imported_Product");
-		cart.addItem(taxedImported);
+		cart.addItem(taxedImported,salesTax);
 		cart.checkout();
 		assertEquals(new BigDecimal(47.50).setScale(2, RoundingMode.HALF_UP), cart.getTotalPrice().setScale(2, RoundingMode.HALF_UP));
 		assertEquals(new BigDecimal(7.15).setScale(2, RoundingMode.HALF_UP), cart.getTotalTaxes().setScale(2, RoundingMode.HALF_UP));		
@@ -103,10 +108,10 @@ public class AppTest
     
     public void purchase_all() {
     	IShoppingCart cart = new ShoppingCart("Purchase_all");
-    	cart.addItem(taxedImported);
-    	cart.addItem(taxedLocal);
-    	cart.addItem(exemptImported);
-    	cart.addItem(exemptLocal);
+    	cart.addItem(taxedImported,salesTax);
+    	cart.addItem(taxedLocal,salesTax);
+    	cart.addItem(exemptImported,salesTax);
+    	cart.addItem(exemptLocal,salesTax);
     	cart.checkout();
 		assertEquals(new BigDecimal(84.98).setScale(2, RoundingMode.HALF_UP), cart.getTotalPrice().setScale(2, RoundingMode.HALF_UP));
 		assertEquals(new BigDecimal(9.15).setScale(2, RoundingMode.HALF_UP), cart.getTotalTaxes().setScale(2, RoundingMode.HALF_UP));		

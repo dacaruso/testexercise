@@ -11,10 +11,9 @@ import it.davidecaruso.exercise.interfaces.ICartItem;
 import it.davidecaruso.exercise.interfaces.IGood;
 
 public interface IShoppingCart {
+	public void addItem(IGood good,BigDecimal quantity,ISalesTax salesTax);
 	
-	public void addItem(IGood good,BigDecimal quantity);
-
-	public void addItem(IGood good);
+	public void addItem(IGood good,ISalesTax salesTax);
 	
 	public void printReceipt();
 	
