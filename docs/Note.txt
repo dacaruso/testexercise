@@ -1,17 +1,15 @@
 Il progetto contiene 4 packages:
 	1) it.davidecaruso: e' il package principale e contiene la main-class.
 	2) it.davidecaruso.exercise.interfaces
-	3) it.davidecaruso.exercise.imp: 	
+	3) it.davidecaruso.exercise.impl: 	
 	4) it.davidecaruso.exercise.utils
 Inoltre sotto src/test/java si puo' trovare una classe di test.
 
-Ho scelto di definire 4 interfacce che descrivono il comportamento di un un Bene,di una tassa di vendita, di un carrello della spesa e di un elemento del suddetto carrello.
-Attraverso l'uso delle interfacce abbiamo un programma abbastanza generico e che ci permette, se vogliamo, di utilizzare un meccanismo di dependency injection
+Attraverso l'uso diffuso delle interfacce rendiamo il programma piu' generico e possiamo, se si vuole, di utilizzare un meccanismo di dependency injection
 che rende il nostro codice piu' riutilizzabile e testabile.
-In particolare l'implementazione delle interfaccia del Bene e' stata affidata ad una classe astratta "AbstractGood" che implementa il comportamento comune a tutti i beni,
-di seguito sono state create 2 classi di specializzazione una per il bene locale ed un'altra per i beni importati.
-Usando le interfacce e' stato possibile fare in modo che l'elemento carrello della spesa debba gestire un generico "bene" senza doversi curare di che tipo
-possa essere il suddetto bene ed importare tutti i tipi possibili. 
+In particolare l'implementazione dell'interfaccia "IGood" e' stata affidata ad una classe astratta "AbstractGood" che implementa il comportamento comune a tutti i beni,
+di seguito sono state create 2 classi di specializzazione una per il bene locale ed un'altra per i beni importati;in questo modo l'elemento del carrello della spesa puo' un generico "bene" senza doversi curare di che tipo possa essere.
+
 
 
 
