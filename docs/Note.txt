@@ -1,10 +1,12 @@
 Il progetto contiene 4 packages:
 	1) it.davidecaruso: e' il package principale e contiene la main-class.
-	2) it.davidecaruso.exercise.interfaces
-	3) it.davidecaruso.exercise.impl: 	
-	4) it.davidecaruso.exercise.utils
+	2) it.davidecaruso.exercise.interfaces: contiene le interfacce applicative 
+	3) it.davidecaruso.exercise.impl: contiene le implementazioni delle suddette intefacce	
+	4) it.davidecaruso.exercise.utils: contiene classi di utilita'
+
 Inoltre sotto src/test/java si puo' trovare una classe di test.
 
+Poche righe per spiegare la scelta di usare diffusamente le interfacce nel codice.
 Attraverso l'uso diffuso delle interfacce rendiamo il programma piu' generico e possiamo, se si vuole, di utilizzare un meccanismo di dependency injection
 che rende il nostro codice piu' riutilizzabile e testabile.
 In particolare l'implementazione dell'interfaccia "IGood" e' stata affidata ad una classe astratta "AbstractGood" che implementa il comportamento comune a tutti i beni,
