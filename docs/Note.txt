@@ -10,7 +10,8 @@ Poche righe per spiegare la scelta di usare diffusamente le interfacce nel codic
 Attraverso l'uso diffuso delle interfacce rendiamo il programma piu' generico e possiamo, se si vuole, di utilizzare un meccanismo di dependency injection
 che rende il nostro codice piu' riutilizzabile e testabile.
 In particolare l'implementazione dell'interfaccia "IGood" e' stata affidata ad una classe astratta "AbstractGood" che implementa il comportamento comune a tutti i beni,
-di seguito sono state create 2 classi di specializzazione una per il bene locale ed un'altra per i beni importati;in questo modo l'elemento del carrello della spesa puo' un generico "bene" senza doversi curare di che tipo possa essere.
+di seguito sono state create 2 classi di specializzazione una per il bene locale ed un'altra per i beni importati;in questo modo l'elemento del carrello della spesa puo' 
+utilizzare un generico "bene" senza doversi curare di che tipo possa essere.
 
 
 
